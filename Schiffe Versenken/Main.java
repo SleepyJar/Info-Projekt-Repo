@@ -30,4 +30,8 @@ public class Main
         // tragen Sie hier den Code ein
         return x + y;
     }
+    
+    public void cock(){
+        
+    }
 }
