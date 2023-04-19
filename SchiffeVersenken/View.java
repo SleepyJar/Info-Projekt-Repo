@@ -1,9 +1,10 @@
 import javax.swing.*;
-public class View{
+
+public class View extends JFrame{
     public View(){
-        JFrame f = new JFrame();
-        f.setSize(400,500);
-        f.setLayout(null);
-        f.setVisible(true);
+        setSize(400,500);
+        setLayout(null);
+        setVisible(true);
+        setLocation(300, 300);
     }
 }
