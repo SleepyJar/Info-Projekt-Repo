@@ -12,10 +12,19 @@ public class Feld
         gegnerFeld = new int[10][10];
         eigenesFeld = new int[10][10];
     }
-    public void trefferEigenesFeld(int x, int t){
+    public void trefferEigenesFeld(int x, int y){
     
-    if(
-    
-    )
+        if(eigenesFeld[x][y]== 2)
+        {
+            eigenesFeld[x][y] = 3;
+            
+        }
+         else if(eigenesFeld[x][y] ==0)
+         {
+            eigenesFeld[x][y]=1;
+            Spiel.beendeZug();
+         }  
+        
+     
     }
 }
