@@ -2,7 +2,7 @@ public class Schiff{
     private int laenge;
     private int x;
     private int y;
-    private boolean getroffen[][];
+    private int treffer;
     private String ausrichtung;
     private boolean gesunken;
     public Schiff(int laenge, int x, int y, String ausrichtung){
@@ -12,8 +12,12 @@ public class Schiff{
         this.ausrichtung = ausrichtung;
     }
     
-    public void trefferSetzen(int x, int y){
-        getroffen[x][y] = true;
+    public void treffen(int x, int y){
+        treffer ++;
+        if(treffer == length){
+        
+            this.schiffSenken();
+        }
     }
     
     public void schiffSenken(){
