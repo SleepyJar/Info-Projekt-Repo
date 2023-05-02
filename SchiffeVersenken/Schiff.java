@@ -14,7 +14,7 @@ public class Schiff{
     
     public void treffen(int x, int y){
         treffer ++;
-        if(treffer == length){
+        if(treffer == laenge){
         
             this.schiffSenken();
         }
