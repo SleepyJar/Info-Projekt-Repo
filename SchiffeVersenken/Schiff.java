@@ -28,7 +28,7 @@ public class Schiff{
     }
     public int laengeGeben(){
     
-        return laenge
+        return laenge;
     }
     public String ausrichtungGeben(){
         return ausrichtung;
