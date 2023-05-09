@@ -16,11 +16,21 @@ public class Schiff{
         treffer ++;
         if(treffer == laenge){
         
-            this.schiffSenken();
+            this.schiffSinken();
         }
     }
     
-    public void schiffSenken(){
+    public void schiffSinken(){
         gesunken = true;
+    }
+    public boolean lebt(){
+        return gesunken;
+    }
+    public int laengeGeben(){
+    
+        return laenge
+    }
+    public String ausrichtungGeben(){
+        return ausrichtung;
     }
 }
