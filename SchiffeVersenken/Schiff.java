@@ -33,4 +33,6 @@ public class Schiff{
     public String ausrichtungGeben(){
         return ausrichtung;
     }
+    public int xGeben(){return x;}
+    public int yGeben(){return y;}
 }
