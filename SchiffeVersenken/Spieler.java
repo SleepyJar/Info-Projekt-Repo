@@ -70,7 +70,7 @@ public class Spieler{
             default: 
             System.out.println("Fehler"); 
             }
-            return baueSchiff(anzahlaufgestellteSchiffe++);
+            return pruefeSchiff(anzahlaufgestellteSchiffe++);
         } 
         
     public String naechstesSchiff geben(){
@@ -112,14 +112,38 @@ public class Spieler{
             System.out.println("Fehler"); 
     }}
     
-    public boolean baueSchiff(int noSchiff){ 
+    public boolean pruefeSchiff(int noSchiff){ 
     // setzt ein bestimmtes Schiff im eigenem Feld um
         if(eigeneSchiffe[noSchiff] == "vertikal"){
         
-            if(eigeneSchiffe[noSchiffe].10-eigeneSchiffe[noSchiff].laengeGeben 
+            if(eigeneSchiffe[noSchiff].laengeGeben() +eigeneSchiffe[noSchiff].xGeben() <10){
+                //fall Horizontal, innerhalb des Feldes
+                
+                for(int i =0; i=< eigeneSchiffe[noSchiff].laengeGeben();i++){
+                    boolean valide = true;
+                    if(ueberpruefeValideSchiffposition(eigeneSchiffe[noSchiff].xGeben() +i, eigeneSchiffe[noSchiff].yGeben())){
+                    
+                        
+                    }
+                    else{
+                        anzahlaufgestellteSchiffe++;
+                        return false;
+                    }
+                }
+                }
+            else{
+                anzahlaufgestellteSchiffe++;
+                return false;
+            }
         }
-        else{
-        
+        else{ //horizontaler Fall
+            if(eigeneSchiffe[noSchiff].laengeGeben() +eigeneSchiffe[noSchiff].yGeben() <10){
+                //fall vertikal, innerhalb des Feldes
+                }
+            else{ 
+                anzahlaufgestellteSchiffe++;
+                return false;
+            }
         
         }    
       
