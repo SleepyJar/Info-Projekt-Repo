@@ -45,4 +45,16 @@ public class Feld
     
         gegnerFeld[x][y] = neuesInt;
     }
+    public boolean uepruefeValideSchiffposition(int x, int y){ //ueberprueft ob das Feld ein anliegendes Schiff hat
+    
+        private boolean valide = true;
+        for(int i = -1; i<2; i++){
+                
+               for(int z=-1; i<2, i++){
+               
+                    valide = eigenesFeld[x+i][y+z] =! 2;
+               }
+            }
+    
+    }
 }
