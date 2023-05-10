@@ -47,14 +47,23 @@ public class Feld
     }
     public boolean uepruefeValideSchiffposition(int x, int y){ //ueberprueft ob das Feld ein anliegendes Schiff hat
     
-        private boolean valide = true;
+        boolean valide = true;
+        
         for(int i = -1; i<2; i++){
                 
-               for(int z=-1; i<2, i++){
-               
-                    valide = eigenesFeld[x+i][y+z] =! 2;
+               for(int z=-1; z<2; z++){
+                    if(x+i<0 || x+z<0){
+                        valide = true;
+                    }
+                    else{
+                    valide = (eigenesFeld[x+i][y+z] != 2);
+                }
+                    
+                    
+                    if(valide== false){return valide;}
                }
             }
+        return valide;
     
     }
 }
