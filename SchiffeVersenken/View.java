@@ -1,8 +1,10 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class View extends JFrame{
+public class View extends JFrame implements ActionListener{
     private JPanel jPaneloben;
     private JPanel jPanelunten;
     private JPanel jPanelrechts;
@@ -10,10 +12,9 @@ public class View extends JFrame{
     private JButton[] jButtonunten = new JButton[100];
     private JLabel[] jLabelobenEigenes = new JLabel[10];
     private JLabel[] jLabelobenGegner = new JLabel[10];
-    private JLabel[] jLabelunten = new JLabel[10];
-    private JLabel[] jLabelrechts = new JLabel[10];
-    private JLabel[] jLabellinks = new JLabel[10];
-    private JLabel jLabel;
+    private JLabel[] jLabelseiteEigenes = new JLabel[10];
+    private JLabel[] jLabelseiteGegner = new JLabel[10];
+
  
     public View() {
         setSize(new Dimension(1920, 1080));
@@ -47,9 +48,6 @@ public class View extends JFrame{
             jLabelobenEigenes[i].setHorizontalAlignment(SwingConstants.CENTER);
             jLabelobenGegner[i] = new JLabel(""+(i+1));
             jLabelobenGegner[i].setHorizontalAlignment(SwingConstants.CENTER);
-            jLabelunten[i] = new JLabel("                "+(i+1));
-            jLabellinks[i] = new JLabel();
-            jLabelrechts[i] = new JLabel();
         }
         
         for ( int i = 0; i<100; i++ ) {
@@ -59,6 +57,7 @@ public class View extends JFrame{
                 }
             }
             jButtonoben[i] = new JButton ();
+            jButtonoben[i].addActionListener(this);
             jPaneloben.add ( jButtonoben[i] );
         }        
         
@@ -77,8 +76,15 @@ public class View extends JFrame{
         add(jPanelrechts);
     }
  
-    
+    public void actionPerformed(ActionEvent e){
+        for (int i = 0; i < 100; i++){
+            if (e.getSource() == jButtonoben[i]){
+                int x = i % 10;
+                int y = i / 10;
+                System.out.println(x + "," + y);
+            }
+        }
+    }
 }
 
     
-}
