@@ -14,6 +14,7 @@ public class View extends JFrame implements ActionListener{
     private JLabel[] jLabelobenGegner = new JLabel[10];
     private JLabel[] jLabelseiteEigenes = new JLabel[10];
     private JLabel[] jLabelseiteGegner = new JLabel[10];
+    private Feld feld;
 
  
     public View() {
@@ -22,17 +23,21 @@ public class View extends JFrame implements ActionListener{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
         
+        feld = new Feld();
+        
         jPaneloben = new JPanel();
         jPanelunten = new JPanel();
         jPanelrechts = new JPanel();
         
         jPaneloben.setBackground(Color.green);
         jPaneloben.setLayout(new GridLayout(12, 12));
+        jPaneloben.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 130));
         jPaneloben.setSize(1600, 540);
         jPaneloben.setVisible(true);
         
         jPanelunten.setBackground(Color.red);
         jPanelunten.setLayout(new GridLayout(12, 12));
+        jPanelunten.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 130));
         jPanelunten.setLocation(0, 540);
         jPanelunten.setSize(1600, 540);
         jPanelunten.setVisible(true);
@@ -50,25 +55,40 @@ public class View extends JFrame implements ActionListener{
             jLabelobenGegner[i].setHorizontalAlignment(SwingConstants.CENTER);
         }
         
-        for ( int i = 0; i<100; i++ ) {
-            if (i == 0){
-                for (int j = 0; j < 10; j++){
-                    jPaneloben.add(jLabelobenEigenes[j]);
+        jPaneloben.add(new JLabel());
+        for (int j = 0; j < 10; j++){
+            jPaneloben.add(jLabelobenEigenes[j]);
+        }
+        for (int i = 0; i < 10; i++){
+            for (int j = 0; j < 11; j++){
+                if (j == 0){
+                    jPaneloben.add(new JLabel("A", SwingConstants.CENTER));
+                }
+                else{
+                    jButtonoben[10*i+j-1] = new JButton();
+                    jButtonoben[10*i+j-1].addActionListener(this);
+                    jPaneloben.add(jButtonoben[10*i+j-1]);
+                    
                 }
             }
-            jButtonoben[i] = new JButton ();
-            jButtonoben[i].addActionListener(this);
-            jPaneloben.add ( jButtonoben[i] );
-        }        
+        }
         
-         for ( int i = 0; i<100; i++ ) {
-             if (i == 0){
-                for (int j = 0; j < 10; j++){
-                    jPanelunten.add(jLabelobenGegner[j]);
+        jPanelunten.add(new JLabel());
+        for (int j = 0; j < 10; j++){
+            jPanelunten.add(jLabelobenGegner[j]);
+        }
+        for (int i = 0; i < 10; i++){
+            for (int j = 0; j < 11; j++){
+                if (j == 0){
+                    jPanelunten.add(new JLabel("A", SwingConstants.CENTER));
+                }
+                else{
+                    jButtonunten[10*i+j-1] = new JButton();
+                    jButtonunten[10*i+j-1].addActionListener(this);
+                    jPanelunten.add(jButtonunten[10*i+j-1]);
+                    
                 }
             }
-            jButtonunten[i] = new JButton ();
-            jPanelunten.add ( jButtonunten[i] );
         }
  
         add(jPaneloben);
@@ -82,9 +102,19 @@ public class View extends JFrame implements ActionListener{
                 int x = i % 10;
                 int y = i / 10;
                 System.out.println(x + "," + y);
+                if(feld.trefferEigenesFeld(x, y) == 3){
+                    jButtonoben[i].setText("X");
+                }
+                else if(feld.trefferEigenesFeld(x, y) == 1){
+                    jButtonoben[i].setText("O");
+                }
+                else {
+                    jButtonoben[i].setText("-");
+                }
             }
         }
     }
 }
 
     
+
