@@ -6,7 +6,7 @@ public class Spiel{
     private View view;
     
     public Spiel(){
-        spieler = new Spieler[2]
+        spieler = new Spieler[2];
         spieler[0] = new Spieler();
         spieler[1] = new Spieler();
         aktuellerSpieler = 1;
@@ -25,5 +25,5 @@ public class Spiel{
         
     }
     
-    public void feldUpdateModel{}
+    //public void feldUpdateModel{}
 }
