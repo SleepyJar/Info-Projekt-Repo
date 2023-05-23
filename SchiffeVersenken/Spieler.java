@@ -63,7 +63,7 @@ public class Spieler{
             eigeneSchiffe[anzahlaufgestellteSchiffe] = new Schiff(5, x, y, Ausrichtung);  
                 
             Spiel.beendeZug();
-            anzahlaufzustellendeSchiffe== -1;
+            anzahlaufzustellendeSchiffe= -1;
                 
                
             
@@ -87,7 +87,7 @@ public class Spieler{
             return "U-Boot, 2";
             break;
             case 3: 
-            return "U-Boot, 2";;
+            return "U-Boot, 2";
             break;
             case 4:
             return "Zerstoerer, 3";
@@ -99,7 +99,7 @@ public class Spieler{
             return "Zerstoerer, 3";
             break;
             case 7:
-            return "Kreuzer, 4"
+            return "Kreuzer, 4";
             break;
             case 8:
             return "Kreuzer, 4";
@@ -114,12 +114,13 @@ public class Spieler{
     
     public boolean pruefeSchiff(int noSchiff){ 
     // setzt ein bestimmtes Schiff im eigenem Feld um
+        if(eigeneSchiffe[noSchiff].laengeGeben() +eigeneSchiffe[noSchiff].xGeben() <10){
+                //fall innerhalb des Feldes
         if(eigeneSchiffe[noSchiff] == "vertikal"){
         
-            if(eigeneSchiffe[noSchiff].laengeGeben() +eigeneSchiffe[noSchiff].xGeben() <10){
-                //fall Horizontal, innerhalb des Feldes
+            
                 
-                for(int i =0; i=< eigeneSchiffe[noSchiff].laengeGeben();i++){
+                for(int i =0; i<= eigeneSchiffe[noSchiff].laengeGeben();i++){
                    
                     if(ueberpruefeValideSchiffposition(eigeneSchiffe[noSchiff].xGeben() +i, eigeneSchiffe[noSchiff].yGeben())){
                     
@@ -130,7 +131,7 @@ public class Spieler{
                         return false;
                     }
                 }
-                }
+                
             else{
                 anzahlaufgestellteSchiffe++;
                 return false;
@@ -146,7 +147,10 @@ public class Spieler{
             }
         
         }    
-      
+      else{
+                anzahlaufgestellteSchiffe++;
+                return false;
+            }
     
     }
     
