@@ -120,10 +120,10 @@ public class Spieler{
                 //fall Horizontal, innerhalb des Feldes
                 
                 for(int i =0; i=< eigeneSchiffe[noSchiff].laengeGeben();i++){
-                    boolean valide = true;
+                   
                     if(ueberpruefeValideSchiffposition(eigeneSchiffe[noSchiff].xGeben() +i, eigeneSchiffe[noSchiff].yGeben())){
                     
-                        
+                         
                     }
                     else{
                         anzahlaufgestellteSchiffe++;
