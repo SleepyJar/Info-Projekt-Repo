@@ -7,7 +7,7 @@ public class Feld
     //0 = leeres Feld, 1 = getroffenes leeres Feld, 2 getroffenes Schiff, 3 gesunkenes SChiff
      private int [][] eigenesFeld;
     //0 leeres Feld, 1 getroffenes leeres Feld, 2 eigenes Schiff, 3 getroffenes Schiff
-    public Feld(int Spieler){
+    public Feld(){
     
         gegnerFeld = new int[9][9];
         eigenesFeld = new int[9][9];
