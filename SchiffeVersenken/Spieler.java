@@ -116,7 +116,7 @@ public class Spieler{
     // setzt ein bestimmtes Schiff im eigenem Feld um
         if(eigeneSchiffe[noSchiff].laengeGeben() +eigeneSchiffe[noSchiff].xGeben() <10){
                 //fall innerhalb des Feldes
-        if(eigeneSchiffe[noSchiff] == "vertikal"){
+        if(eigeneSchiffe[noSchiff].ausrichtungGeben() == "vertikal"){
         
             
                 
