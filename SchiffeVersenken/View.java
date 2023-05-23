@@ -14,10 +14,12 @@ public class View extends JFrame implements ActionListener{
     private JLabel[] jLabelobenGegner = new JLabel[10];
     private JLabel[] jLabelseiteEigenes = new JLabel[10];
     private JLabel[] jLabelseiteGegner = new JLabel[10];
+    private Spiel spiel;
     private Feld feld;
 
  
-    public View() {
+    public View(Spiel spiel) {
+        this.spiel = spiel;
         setSize(new Dimension(1920, 1080));
         this.setVisible(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -116,5 +118,4 @@ public class View extends JFrame implements ActionListener{
     }
 }
 
-    
 
