@@ -29,6 +29,8 @@ public class Feld
         return -1; // 3= Treffer, 1 ist kein Treffer, -1 ist ein invalider Schuss
     
     }
+    
+    }
     public int gibFeldPosition(int x, int y){
     
         return eigenesFeld[x][y];
