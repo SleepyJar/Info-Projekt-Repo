@@ -20,8 +20,8 @@ public class Spiel{
         view = new View(this);
     }
     
-    public void click(int x, int y, int spielerFeld){ //spielerFeld gibt dasfeld an, von dem der click getaetigt wurde
-      if(spielerFeld == aktuellerSpieler) {     
+    public void click(int x, int y){
+      if(aktuellesFeld == aktuellerSpieler) {     
         if (spielzustand == 1){
                 bauclick(x, y);
             }
@@ -53,7 +53,7 @@ public class Spiel{
             baurichtung = "vertikal";
         }
     }
-    public static void beendeZug(){
+    public void beendeZug(){
     
         if(aktuellerSpieler == 0){
             aktuellerSpieler = 1;
@@ -66,5 +66,8 @@ public class Spiel{
         }
         
     }
+    public void setAktuellesFeld(int aktuellesFeldNeu){
     
+        aktuellesFeld =aktuellesFeldNeu
+    }
 }
