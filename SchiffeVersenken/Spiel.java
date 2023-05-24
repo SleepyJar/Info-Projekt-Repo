@@ -30,11 +30,16 @@ public class Spiel{
     }
     
     public void bauclick(int x, int y){
-        spieler[aktuellerSpieler].schiffeAufstellen(x, y, baurichtung);
+        if(spieler[aktuellerSpieler].schiffeAufstellen(x, y, baurichtung)==false){
+        
+        }
     }
     
     public void schussclick(int x, int y){
-        spieler[aktuellerSpieler].gibFeld().trefferEigenesFeld(x, y);
+        spieler[aktuellerSpieler].gibFeld().trefferEigenesFeld(x, y)
+        
+        
+        }
     }
     
     public void baurichtungAendern(){
