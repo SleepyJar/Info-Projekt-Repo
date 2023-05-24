@@ -4,27 +4,29 @@ public class Spiel{
     private int aktuellesFeld; //aktuelles Feld der beiden Felder
     private Feld[] feld;
     private View view;
-    private String spielzustand; // "Baumodus" oder "Schiessmodus"
+    private int spielzustand; //  1 = "Baumodus" oder  2 = "Schiessmodus"
     
     public Spiel(){
         spieler = new Spieler[2];
-        spieler[0] = new Spieler();
-        spieler[1] = new Spieler();
+        spieler[0] = new Spieler(0);
+        spieler[1] = new Spieler(1);
         feld = new Feld[2];
         feld[0] = new Feld();
         feld[1] = new Feld();
-        aktuellerSpieler = 1;
+        aktuellerSpieler = 0;
         aktuellesFeld = 1;
+        spielzustand = 1;
         view = new View(this);
     }
     
-    public void setzeTreffer(int x, int y){
-        if (aktuellerSpieler == 0){
-            // setzt Treffer bei Spieler1
+    public void click(int x, int y){
+        if (spielzustand == 1){
+            
         }
         else{
-            //setzt Treffer bei Spieler1
+            spieler[aktuellerSpieler].gibFeld().trefferEigenesFeld(x, y);
         }
+        
     }
     public static void beendeZug(){
     
