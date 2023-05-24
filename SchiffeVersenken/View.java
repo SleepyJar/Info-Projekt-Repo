@@ -116,6 +116,11 @@ public class View extends JFrame implements ActionListener{
             }
         }
     }
+    public void mouseClicked(MouseEvent me){
+        if (me.getJFrame == MouseEvent.BUTTON3){
+            spiel.baurichtungAendern();
+        }
+    }
 }
 
 
