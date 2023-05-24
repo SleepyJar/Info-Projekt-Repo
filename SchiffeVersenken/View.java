@@ -14,17 +14,14 @@ public class View extends JFrame implements ActionListener{
     private JLabel[] jLabelobenGegner = new JLabel[10];
     private JLabel[] jLabelSeiteEigenes = new JLabel[10];
     private JLabel[] jLabelSeiteGegner  = new JLabel[10];
+    private Spiel spiel;
 
-    private JLabel jLabel;
-    private Feld feld;
-
-    public View() {
+    public View(Spiel spiel) {
+        this.spiel = spiel;
         setSize(new Dimension(1920, 1080));
         this.setVisible(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-
-        feld = new Feld();
 
         jPaneloben = new JPanel();
         jPanelunten = new JPanel();
@@ -34,9 +31,6 @@ public class View extends JFrame implements ActionListener{
         jPaneloben.setLayout(new GridLayout(11, 11));
         jPaneloben.setSize(1600, 540);
         jPaneloben.setVisible(true);
-
-        //noch zu tun!!
-        //jPaneloben.setBorder(BorderFactory.createEmptyBorder(
 
         jPanelunten.setBackground(Color.red);
         jPanelunten.setLayout(new GridLayout(11, 11));
@@ -94,32 +88,21 @@ public class View extends JFrame implements ActionListener{
 
     }
 
-    public void actionPerformed(ActionEvent e)
-    {
-        for (int i= 0; i< 100; i++)
-        {
-            if ( e.getSource() == jButtonoben[i]){
+    public void actionPerformed(ActionEvent e){
+        for (int i = 0; i < 100; i++){
+            if (e.getSource() == jButtonoben[i]){
                 int x = i % 10;
-                int y = i /10;
-                System.out.println(x + "," +y);
-                // if(feld.trefferEigenesFeld(x, y) == 3) {
-                    // jButtonoben[i].setText("X");
-                // }
-
-                // else if (feld.trefferEigenesFeld(x,y) == 1){
-                    // jButtonoben[i].setText("0");
-                // }
-                // else {
-                    // jButtonoben[i].setText("-");
-                // }
-            }
-            
-            if ( e.getSource() == jButtonunten[i]){
-                int x = i % 10;
-                int y = i /10;
-                System.out.println(x + "," +y);
+                int y = i / 10;
+                System.out.println(x + "," + y);
+                spiel.click(x, y);
             }
         }
+    }
+    public void mouseClicked(MouseEvent me){
+        if (me.getJFrame == MouseEvent.BUTTON3){
+            spiel.baurichtungAendern();
+        }
+    }
 
     }
 }
