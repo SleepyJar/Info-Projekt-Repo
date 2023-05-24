@@ -1,6 +1,7 @@
 public class Spiel{
     private Spieler[] spieler;
-    private static int aktuellerSpieler;
+    private int aktuellerSpieler; //0 und 1
+    private int andererSpieler; //spieler der nicht am Zug ist, damit der gegnerische Schuss angezeigt wird
     private int aktuellesFeld; //aktuelles Feld der beiden Felder
     private Feld[] feld;
     private View view;
@@ -19,28 +20,30 @@ public class Spiel{
         view = new View(this);
     }
     
-    public void click(int x, int y, int spieler){
+    public void click(int x, int y, int spielerFeld){ //spielerFeld gibt dasfeld an, von dem der click getaetigt wurde
+      if(spielerFeld == aktuellerSpieler) {     
         if (spielzustand == 1){
-            bauclick(x, y);
-        }
-        else{
-            schussclick(x, y);
-        }
-        
+                bauclick(x, y);
+            }
+            else{
+                schussclick(x, y);
+            }
+      }
     }
     
-    public void bauclick(int x, int y){
+    public void bauclick(int x, int y, int spielerFeld){
         if(spieler[aktuellerSpieler].schiffeAufstellen(x, y, baurichtung)==false){
         
         }
     }
     
-    public void schussclick(int x, int y){
-        spieler[aktuellerSpieler].gibFeld().trefferEigenesFeld(x, y);
+    public void schussclick(int x, int y, int spielerFeld){
+        int schussergebnis = spieler[andererSpieler].gibFeld().trefferEigenesFeld(x, y);
+        spieler[aktuellerSpieler].gibFeld().trefferAnderesFeld(x,y, schussergebnis);
         
         
         }
-    
+    }
     
     public void baurichtungAendern(){
         if (baurichtung == "vertikal"){
@@ -54,10 +57,12 @@ public class Spiel{
     
         if(aktuellerSpieler == 0){
             aktuellerSpieler = 1;
+            andererSpieler = 0;
         }
         else
         {
             aktuellerSpieler =0;
+            andererSpieler =1;
         }
         
     }
