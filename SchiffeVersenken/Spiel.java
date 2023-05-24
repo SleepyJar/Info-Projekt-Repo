@@ -5,7 +5,7 @@ public class Spiel{
     private Feld[] feld;
     private View view;
     private int spielzustand; //  1 = "Baumodus" oder  2 = "Schiessmodus"
-    
+    private String baurichtung; // "vertikal", "horizontal"
     public Spiel(){
         spieler = new Spieler[2];
         spieler[0] = new Spieler(0);
@@ -21,12 +21,29 @@ public class Spiel{
     
     public void click(int x, int y){
         if (spielzustand == 1){
-            
+            bauclick(x, y);
         }
         else{
-            spieler[aktuellerSpieler].gibFeld().trefferEigenesFeld(x, y);
+            schussclick(x, y);
         }
         
+    }
+    
+    public void bauclick(int x, int y){
+        spieler[aktuellerSpieler].schiffeAufstellen(x, y, baurichtung);
+    }
+    
+    public void schussclick(int x, int y){
+        spieler[aktuellerSpieler].gibFeld().trefferEigenesFeld(x, y);
+    }
+    
+    public void baurichtungAendern(){
+        if (baurichtung == "vertikal"){
+            baurichtung = "horizontal";
+        }
+        else{
+            baurichtung = "vertikal";
+        }
     }
     public static void beendeZug(){
     
@@ -40,5 +57,4 @@ public class Spiel{
         
     }
     
-    //public void feldUpdateModel{}
 }
