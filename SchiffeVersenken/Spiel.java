@@ -40,7 +40,7 @@ public class Spiel{
         
         
         }
-    }
+    
     
     public void baurichtungAendern(){
         if (baurichtung == "vertikal"){
