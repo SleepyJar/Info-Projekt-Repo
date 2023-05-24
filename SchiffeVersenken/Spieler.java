@@ -8,9 +8,9 @@ public class Spieler{
       public Spieler(int spielernr){
           spielernummer = spielernr;
           spielerFeld = new Feld();
-          anzahlaufgestellteSchiffe = 9;
+          anzahlaufzustellendeSchiffe = 9;
           eigeneSchiffe = new Schiff[10];
-        
+            
       }
       public Feld gibFeld(){
         
@@ -22,45 +22,45 @@ public class Spieler{
       
       }
         public boolean schiffeAufstellen(int x, int y,String Ausrichtung){ //aktivieren bei Klick. Boolean ist wahr, wenn die Position invalide ist
-        switch(anzahlaufgestellteSchiffe){ 
+        switch(anzahlaufzustellendeSchiffe){ 
             case 0: 
-            eigeneSchiffe[anzahlaufgestellteSchiffe] = new Schiff(2, x, y, Ausrichtung);
+            eigeneSchiffe[anzahlaufzustellendeSchiffe] = new Schiff(2, x, y, Ausrichtung);
             anzahlaufzustellendeSchiffe--;
             break;
             case 1: 
-            eigeneSchiffe[anzahlaufgestellteSchiffe] = new Schiff(2, x, y, Ausrichtung);
+            eigeneSchiffe[anzahlaufzustellendeSchiffe] = new Schiff(2, x, y, Ausrichtung);
                 anzahlaufzustellendeSchiffe--;
             break;
             case 2: 
-            eigeneSchiffe[anzahlaufgestellteSchiffe] = new Schiff(2, x, y, Ausrichtung);
+            eigeneSchiffe[anzahlaufzustellendeSchiffe] = new Schiff(2, x, y, Ausrichtung);
                 anzahlaufzustellendeSchiffe--;
             break;
             case 3: 
-            eigeneSchiffe[anzahlaufgestellteSchiffe] = new Schiff(2, x, y, Ausrichtung);
+            eigeneSchiffe[anzahlaufzustellendeSchiffe] = new Schiff(2, x, y, Ausrichtung);
                 anzahlaufzustellendeSchiffe--;
             break;
             case 4:
-            eigeneSchiffe[anzahlaufgestellteSchiffe] = new Schiff(3, x, y, Ausrichtung);
-                anzahlaufgestellteSchiffe--;
+            eigeneSchiffe[anzahlaufzustellendeSchiffe] = new Schiff(3, x, y, Ausrichtung);
+                anzahlaufzustellendeSchiffe--;
             break;
             case 5:
-            eigeneSchiffe[anzahlaufgestellteSchiffe] = new Schiff(3, x, y, Ausrichtung);
-                anzahlaufgestellteSchiffe--;
+            eigeneSchiffe[anzahlaufzustellendeSchiffe] = new Schiff(3, x, y, Ausrichtung);
+                anzahlaufzustellendeSchiffe--;
             break;
             case 6:
-            eigeneSchiffe[anzahlaufgestellteSchiffe]= new Schiff(3, x, y, Ausrichtung);
+            eigeneSchiffe[anzahlaufzustellendeSchiffe]= new Schiff(3, x, y, Ausrichtung);
                anzahlaufzustellendeSchiffe--;
             break;
             case 7:
-            eigeneSchiffe[anzahlaufgestellteSchiffe] = new Schiff(4, x, y, Ausrichtung);
-                 anzahlaufzustellendeSchiffe--1
+            eigeneSchiffe[anzahlaufzustellendeSchiffe] = new Schiff(4, x, y, Ausrichtung);
+                 anzahlaufzustellendeSchiffe--;
             break;
             case 8:
-            eigeneSchiffe[anzahlaufgestellteSchiffe] = new Schiff(4, x, y, Ausrichtung);
+            eigeneSchiffe[anzahlaufzustellendeSchiffe] = new Schiff(4, x, y, Ausrichtung);
                 anzahlaufzustellendeSchiffe--;
             break;
             case 9:
-            eigeneSchiffe[anzahlaufgestellteSchiffe] = new Schiff(5, x, y, Ausrichtung);  
+            eigeneSchiffe[anzahlaufzustellendeSchiffe] = new Schiff(5, x, y, Ausrichtung);  
                 
             Spiel.beendeZug();
             anzahlaufzustellendeSchiffe= -1;
@@ -70,88 +70,100 @@ public class Spieler{
             default: 
             System.out.println("Fehler"); 
             }
-            return pruefeSchiff(anzahlaufgestellteSchiffe++);
+            return baueSchiff(anzahlaufzustellendeSchiffe++);
         } 
         
-    public String naechstesSchiff geben(){
+    public String naechstesSchiffgeben(){
     //gibt das naechste, aufstellbare Schiff und seine Laenge an
     
-    switch(anzahlaufgestellteSchiffe){ 
-            case 0: 
-            return "U-Boot, 2";
-            break;
-            case 1: 
-            return "U-Boot, 2";
-            break;
-            case 2: 
-            return "U-Boot, 2";
-            break;
-            case 3: 
-            return "U-Boot, 2";
-            break;
-            case 4:
-            return "Zerstoerer, 3";
-            break;
-            case 5:
-            return "Zerstoerer, 3";
-            break;
-            case 6:
-            return "Zerstoerer, 3";
-            break;
-            case 7:
-            return "Kreuzer, 4";
-            break;
-            case 8:
-            return "Kreuzer, 4";
-            break;
-            case 9:
-            return "Schlachtschiff, 5";
+        switch(anzahlaufzustellendeSchiffe){ 
+                case 0: 
+                return "U-Boot, 2";
                 
-            
-            default: 
-            System.out.println("Fehler"); 
-    }}
+                case 1: 
+                return "U-Boot, 2";
+                
+                case 2: 
+                return "U-Boot, 2";
+                
+                case 3: 
+                return "U-Boot, 2";
+                
+                case 4:
+                return "Zerstoerer, 3";
+                
+                case 5:
+                return "Zerstoerer, 3";
+                
+                case 6:
+                return "Zerstoerer, 3";
+                
+                case 7:
+                return "Kreuzer, 4";
+                
+                case 8:
+                return "Kreuzer, 4";
+                
+                case 9:
+                return "Schlachtschiff, 5";
+                    
+                
+                default: 
+                System.out.println("Fehler");
+                return null;
+        }
+    }
     
-    public boolean pruefeSchiff(int noSchiff){ 
+    public boolean baueSchiff(int noSchiff){ 
     // setzt ein bestimmtes Schiff im eigenem Feld um
         if(eigeneSchiffe[noSchiff].laengeGeben() +eigeneSchiffe[noSchiff].xGeben() <10){
                 //fall innerhalb des Feldes
-        if(eigeneSchiffe[noSchiff].ausrichtungGeben() == "vertikal"){
-        
+            if(eigeneSchiffe[noSchiff].ausrichtungGeben() == "vertikal"){
             
                 
-                for(int i =0; i<= eigeneSchiffe[noSchiff].laengeGeben();i++){
-                   
-                    if(ueberpruefeValideSchiffposition(eigeneSchiffe[noSchiff].xGeben() +i, eigeneSchiffe[noSchiff].yGeben())){
                     
-                         
+                    for(int i =0; i<= eigeneSchiffe[noSchiff].laengeGeben();i++){
+                       
+                        if(spielerFeld.uepruefeValideSchiffposition(eigeneSchiffe[noSchiff].xGeben() , eigeneSchiffe[noSchiff].yGeben()+1)==false){
+                        
+                             anzahlaufzustellendeSchiffe++;
+                            return false;
+                        }
+                        
+                        
                     }
-                    else{
-                        anzahlaufgestellteSchiffe++;
-                        return false;
+                    for(int i =0; i<= eigeneSchiffe[noSchiff].laengeGeben();i++){
+                    
+                    spielerFeld.setFeldPosition(eigeneSchiffe[noSchiff].xGeben()+i, eigeneSchiffe[noSchiff].yGeben(), 2);
                     }
-                }
+                    return true;
                 
-            else{
-                anzahlaufgestellteSchiffe++;
-                return false;
             }
+            else{ //horizontaler Fall
+                
+                for(int i =0; i<= eigeneSchiffe[noSchiff].laengeGeben();i++){
+                       
+                        if(spielerFeld.uepruefeValideSchiffposition(eigeneSchiffe[noSchiff].xGeben()+i, eigeneSchiffe[noSchiff].yGeben())==false){
+                        
+                             anzahlaufzustellendeSchiffe++;
+                            return false;
+                        }
+                        
+                        
+                        
+                    }
+                for(int i =0; i<= eigeneSchiffe[noSchiff].laengeGeben();i++){
+                    
+                    spielerFeld.setFeldPosition(eigeneSchiffe[noSchiff].xGeben()+i, eigeneSchiffe[noSchiff].yGeben(), 2);
+                    }
+                    
+                return true;
+                }    
+      
         }
-        else{ //horizontaler Fall
-            if(eigeneSchiffe[noSchiff].laengeGeben() +eigeneSchiffe[noSchiff].yGeben() <10){
-                //fall vertikal, innerhalb des Feldes
-                }
-            else{ 
-                anzahlaufgestellteSchiffe++;
+        else{
+                anzahlaufzustellendeSchiffe++;
                 return false;
             }
-        
-        }    
-      else{
-                anzahlaufgestellteSchiffe++;
-                return false;
-            }
-    
     }
-    
 }
