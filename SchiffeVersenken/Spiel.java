@@ -39,7 +39,7 @@ public class Spiel{
     
     public void schussclick(int x, int y, int spielerFeld){
         int schussergebnis = spieler[andererSpieler].gibFeld().trefferEigenesFeld(x, y);
-        spieler[aktuellerSpieler].gibFeld().trefferAnderesFeld(x,y, schussergebnis);
+        spieler[aktuellerSpieler].gibFeld().setGegnerFeld(x,y, schussergebnis);
         
         
         }
