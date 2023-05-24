@@ -19,7 +19,7 @@ public class Spiel{
         view = new View(this);
     }
     
-    public void click(int x, int y){
+    public void click(int x, int y, int spieler){
         if (spielzustand == 1){
             bauclick(x, y);
         }
@@ -36,7 +36,7 @@ public class Spiel{
     }
     
     public void schussclick(int x, int y){
-        spieler[aktuellerSpieler].gibFeld().trefferEigenesFeld(x, y)
+        spieler[aktuellerSpieler].gibFeld().trefferEigenesFeld(x, y);
         
         
         }
