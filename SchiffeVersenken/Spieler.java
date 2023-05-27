@@ -5,9 +5,12 @@ public class Spieler{
         public int anzahlaufzustellendeSchiffe; //damit bei schiffeAufstellen das richtige gesetzt wird, -1 ist nach vollendung desSchiffebauprozesses
       
         public Schiff[] eigeneSchiffe;
-      public Spieler(int spielernr){
+        
+        private Spiel spiel;
+      public Spieler(Feld spielerFeld, Spiel spiel, int spielernr){
+          this.spiel = spiel;
           spielernummer = spielernr;
-          spielerFeld = new Feld();
+          this.spielerFeld = spielerFeld;
           anzahlaufzustellendeSchiffe = 9;
           eigeneSchiffe = new Schiff[10];
             
@@ -62,7 +65,7 @@ public class Spieler{
             case 9:
             eigeneSchiffe[anzahlaufzustellendeSchiffe] = new Schiff(5, x, y, Ausrichtung);  
                 
-            Spiel.beendeZug();
+            spiel.beendeZug();
             anzahlaufzustellendeSchiffe= -1;
                 
                
