@@ -1,5 +1,3 @@
-
-
 public class Feld
 {
     private int zugehörigerSpieler;
@@ -7,8 +5,9 @@ public class Feld
     //0 = leeres Feld, 1 = getroffenes leeres Feld, 2 getroffenes Schiff, 3 gesunkenes SChiff
      private int [][] eigenesFeld;
     //0 leeres Feld, 1 getroffenes leeres Feld, 2 eigenes Schiff, 3 getroffenes Schiff
-    public Feld(){
-    
+    private Spiel spiel;
+    public Feld(Spiel spiel){
+        this.spiel = spiel;
         gegnerFeld = new int[9][9];
         eigenesFeld = new int[9][9];
     }
@@ -23,14 +22,14 @@ public class Feld
          else if(eigenesFeld[x][y] ==0)
          {
             eigenesFeld[x][y]=1;
-            Spiel.beendeZug();
+            spiel.beendeZug();
              return 1;
          }  
         return -1; // 3= Treffer, 1 ist kein Treffer, -1 ist ein invalider Schuss
     
     }
     
-    }
+    
     public int gibFeldPosition(int x, int y){
     
         return eigenesFeld[x][y];
