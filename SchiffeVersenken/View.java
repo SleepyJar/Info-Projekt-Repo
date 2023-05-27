@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseAdapter;
 
 public class View extends JFrame implements ActionListener{
     private JPanel jPaneloben;
@@ -28,6 +30,16 @@ public class View extends JFrame implements ActionListener{
         jPaneloben = new JPanel();
         jPanelunten = new JPanel();
         jPanelrechts = new JPanel();
+        
+        addMouseListener(new MouseAdapter() {
+     @Override
+     public void mouseClicked(MouseEvent me) {
+         if (SwingUtilities.isRightMouseButton(me) || me.isControlDown()){
+        spiel.baurichtungAendern();
+        System.out.println("rightclicked");
+    }
+     }
+  });
 
         jPaneloben.setBackground(Color.green);
         jPaneloben.setLayout(new GridLayout(11, 11));
@@ -45,7 +57,7 @@ public class View extends JFrame implements ActionListener{
         jPanelrechts.setLocation(1200, 0);
         jPanelrechts.setSize(400, 1080);
         jPanelrechts.setVisible(true);
-        
+
         jPaneloben.setBorder(BorderFactory.createEmptyBorder(0, 50, 0,100));
         jPanelunten.setBorder(BorderFactory.createEmptyBorder(0, 50, 0,100));
 
@@ -84,8 +96,6 @@ public class View extends JFrame implements ActionListener{
                 }
             }        
 
-            
-
             add(jPaneloben);
             add(jPanelunten);
             add(jPanelrechts);
@@ -108,13 +118,5 @@ public class View extends JFrame implements ActionListener{
             }
         }
     }
-    public void mouseClicked(MouseEvent me){
-        if (me.getSource() == this){
-            spiel.baurichtungAendern();
-        }
-        
-    }
-
-    }
-
+}
 
