@@ -9,11 +9,11 @@ public class Spiel{
     private String baurichtung; // "vertikal", "horizontal"
     public Spiel(){
         spieler = new Spieler[2];
-        spieler[0] = new Spieler(0);
-        spieler[1] = new Spieler(1);
         feld = new Feld[2];
-        feld[0] = new Feld();
-        feld[1] = new Feld();
+        feld[0] = new Feld(this);
+        feld[1] = new Feld(this);
+        spieler[0] = new Spieler(feld[0], this, 0);
+        spieler[1] = new Spieler(feld[1], this, 1);
         aktuellerSpieler = 0;
         aktuellesFeld = 1;
         spielzustand = 1;
@@ -23,10 +23,10 @@ public class Spiel{
     public void click(int x, int y){
       if(aktuellesFeld == aktuellerSpieler) {     
         if (spielzustand == 1){
-                bauclick(x, y);
+                bauclick(x, y, aktuellesFeld);
             }
             else{
-                schussclick(x, y);
+                schussclick(x, y, aktuellesFeld);
             }
       }
     }
@@ -39,11 +39,11 @@ public class Spiel{
     
     public void schussclick(int x, int y, int spielerFeld){
         int schussergebnis = spieler[andererSpieler].gibFeld().trefferEigenesFeld(x, y);
-        spieler[aktuellerSpieler].gibFeld().setGegnerFeld(x,y, schussergebnis);
+        spieler[aktuellerSpieler].gibFeld().setGegnerFeldPosition(x,y, schussergebnis);
         
         
         }
-    }
+    
     
     public void baurichtungAendern(){
         if (baurichtung == "vertikal"){
@@ -68,7 +68,7 @@ public class Spiel{
     }
     public void setAktuellesFeld(int aktuellesFeldNeu){
     
-        aktuellesFeld =aktuellesFeldNeu
+        // aktuellesFeld =aktuellesFeldNeu
     }
     
 }
