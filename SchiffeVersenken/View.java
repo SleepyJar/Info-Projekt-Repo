@@ -7,17 +7,25 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseAdapter;
 
-public class View extends JFrame implements ActionListener{
-    private JPanel jPaneloben;
-    private JPanel jPanelunten;
+public class View extends JFrame implements ActionListener, MouseListener{
+    private Spiel spiel;
+
+    //alles auf den Feldern
+    private JPanel jPanellinks;
     private JPanel jPanelrechts;
-    private JButton[] jButtonoben = new JButton[100];
-    private JButton[] jButtonunten = new JButton[100];
+    private JButton[] jButtonlinks = new JButton[100];
+    private JButton[] jButtonrechts = new JButton[100];
     private JLabel[] jLabelobenEigenes = new JLabel[10];
     private JLabel[] jLabelobenGegner = new JLabel[10];
     private JLabel[] jLabelSeiteEigenes = new JLabel[10];
     private JLabel[] jLabelSeiteGegner  = new JLabel[10];
-    private Spiel spiel;
+
+    //alles auf der Subleiste
+    private JPanel jPanelunten;
+    private JLabel zugLabel;
+    private JLabel modusLabel;
+    private JLabel richtungLabel;
+    private JButton wechselButton;
 
     public View(Spiel spiel) {
         this.spiel = spiel;
@@ -26,40 +34,31 @@ public class View extends JFrame implements ActionListener{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
         setResizable(false);
+        this.addMouseListener(this);
 
-        jPaneloben = new JPanel();
+        jPanellinks = new JPanel();
         jPanelunten = new JPanel();
         jPanelrechts = new JPanel();
-        
-        addMouseListener(new MouseAdapter() {
-     @Override
-     public void mouseClicked(MouseEvent me) {
-         if (SwingUtilities.isRightMouseButton(me) || me.isControlDown()){
-        spiel.baurichtungAendern();
-        System.out.println("rightclicked");
-    }
-     }
-  });
 
-        jPaneloben.setBackground(Color.green);
-        jPaneloben.setLayout(new GridLayout(11, 11));
-        jPaneloben.setSize(1200, 515);
-        jPaneloben.setVisible(true);
+        jPanellinks.setBackground(Color.green);
+        jPanellinks.setLayout(new GridLayout(11, 11));
+        jPanellinks.setSize(800, 800);
+        jPanellinks.setVisible(true);
 
-        jPanelunten.setBackground(Color.red);
-        jPanelunten.setLayout(new GridLayout(11, 11));
-        jPanelunten.setLocation(0, 540);
-        jPanelunten.setSize(1200, 515);
-        jPanelunten.setVisible(true);
-
-        jPanelrechts.setBackground(Color.yellow);
-        jPanelrechts.setLayout(new GridLayout(0, 3));
-        jPanelrechts.setLocation(1200, 0);
-        jPanelrechts.setSize(400, 1080);
+        jPanelrechts.setBackground(Color.red);
+        jPanelrechts.setLayout(new GridLayout(11, 11));
+        jPanelrechts.setLocation(800, 0);
+        jPanelrechts.setSize(800, 800);
         jPanelrechts.setVisible(true);
 
-        jPaneloben.setBorder(BorderFactory.createEmptyBorder(0, 50, 0,100));
-        jPanelunten.setBorder(BorderFactory.createEmptyBorder(0, 50, 0,100));
+        jPanelunten.setBackground(Color.yellow);
+        jPanelunten.setLayout(new GridLayout(1, 4));
+        jPanelunten.setLocation(0, 800);
+        jPanelunten.setSize(1600, 200);
+        jPanelunten.setVisible(true);
+
+        jPanellinks.setBorder(BorderFactory.createEmptyBorder(0, 0, 0,0));
+        jPanelrechts.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
         for ( int i = 0; i < 10; i++){
             jLabelobenEigenes[i] = new JLabel(""+(i+1));
@@ -69,11 +68,11 @@ public class View extends JFrame implements ActionListener{
 
         }
 
-        jPaneloben.add(new JLabel());
-        jPanelunten.add(new JLabel());
+        jPanellinks.add(new JLabel());
+        jPanelrechts.add(new JLabel());
         for (int j = 0; j < 10; j++){
-            jPaneloben.add(jLabelobenEigenes[j]);
-            jPanelunten.add(jLabelobenGegner[j]);
+            jPanellinks.add(jLabelobenEigenes[j]);
+            jPanelrechts.add(jLabelobenGegner[j]);
 
         }
 
@@ -82,41 +81,85 @@ public class View extends JFrame implements ActionListener{
             for (int j = 0; j < 11; j++){
                 if (j == 0){
                     char zahl=(char)(65+i);
-                    jPaneloben.add (new JLabel(Character.toString(zahl),SwingConstants.CENTER));
-                    jPanelunten.add (new JLabel(Character.toString(zahl), SwingConstants.CENTER));
+                    jPanellinks.add (new JLabel(Character.toString(zahl),SwingConstants.CENTER));
+                    jPanelrechts.add (new JLabel(Character.toString(zahl), SwingConstants.CENTER));
                 } else{ 
 
-                    jButtonoben[10*i+j-1] = new JButton ();
-                    jPaneloben.add ( jButtonoben[10*i+j-1] );
-                    jButtonoben[10*i+j-1].addActionListener(this);
+                    jButtonlinks[10*i+j-1] = new JButton ();
+                    jPanellinks.add ( jButtonlinks[10*i+j-1] );
+                    jButtonlinks[10*i+j-1].addActionListener(this);
+                    jButtonlinks[10*i+j-1].addMouseListener(this);
 
-                    jButtonunten[10*i+j-1] = new JButton();
-                    jPanelunten.add (jButtonunten[10*i+j-1]);
-                    jButtonunten[10*i+j-1].addActionListener(this);
+                    jButtonrechts[10*i+j-1] = new JButton();
+                    jPanelrechts.add (jButtonrechts[10*i+j-1]);
+                    jButtonrechts[10*i+j-1].addActionListener(this);
+                    jButtonrechts[10*i+j-1].addMouseListener(this);
                 }
             }        
-
-            add(jPaneloben);
-            add(jPanelunten);
-            add(jPanelrechts);
         }
+        //Seitleiste
+        zugLabel = new JLabel("Zug: Spieler" + (spiel.getaktuellerSpieler() + 1), SwingConstants.CENTER);
+        zugLabel.setFont(new Font("Serif", Font.PLAIN, 36));
+        jPanelunten.add(zugLabel);
 
+        modusLabel = new JLabel("Modus: " + spiel.spielzustandGeben(), SwingConstants.CENTER);
+        modusLabel.setFont(new Font("Serif", Font.PLAIN, 36));
+        jPanelunten.add(modusLabel);
+
+        richtungLabel = new JLabel("Richtung: " + spiel.baurichtungGeben(), SwingConstants.CENTER);
+        richtungLabel.setFont(new Font("Serif", Font.PLAIN, 36));
+        jPanelunten.add(richtungLabel);
+
+        wechselButton = new JButton("Sichtwechsel");
+        wechselButton.setEnabled(false);
+        jPanelunten.add(wechselButton);
+
+        add(jPanellinks);
+        add(jPanelunten);
+        add(jPanelrechts);
+        
+        
     }
 
     public void actionPerformed(ActionEvent e){
         for (int i = 0; i < 100; i++){
-            if (e.getSource() == jButtonoben[i]){
+            if (e.getSource() == jButtonlinks[i]){
                 int x = i % 10;
                 int y = i / 10;
-                System.out.println("Feld oben: " + x + "," + y);
+                System.out.println("Feld links: " + x + "," + y);
                 spiel.click(x, y);
+
             }
-            else if(e.getSource() == jButtonunten[i]){
+            else if(e.getSource() == jButtonrechts[i]){
                 int x = i % 10;
                 int y = i /10;
-                System.out.println("Feld unten: " + x + "," +y);
+                System.out.println("Feld rechts: " + x + "," +y);
             }
         }
     }
+
+    public void mousePressed(MouseEvent e) {
+       
+    }
+
+    public void mouseReleased(MouseEvent e) {
+       
+    }
+
+    public void mouseEntered(MouseEvent e) {
+       
+    }
+
+    public void mouseExited(MouseEvent e) {
+       
+    }
+
+    public void mouseClicked(MouseEvent me) {
+        if (SwingUtilities.isRightMouseButton(me) || me.isControlDown()){
+            spiel.baurichtungAendern();
+            richtungLabel.setText("Richtung: " + spiel.baurichtungGeben());
+        }
+    }
 }
+
 
