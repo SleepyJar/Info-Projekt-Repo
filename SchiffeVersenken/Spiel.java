@@ -5,7 +5,7 @@ public class Spiel{
     private int aktuellesFeld; //aktuelles Feld der beiden Felder
     private Feld[] feld;
     private View view;
-    private int spielzustand; //  1 = "Baumodus" oder  2 = "Schiessmodus"
+    private String spielzustand; //  "Baumodus", "Schiessmodus"
     private String baurichtung; // "vertikal", "horizontal"
     public Spiel(){
         spieler = new Spieler[2];
@@ -16,34 +16,36 @@ public class Spiel{
         spieler[1] = new Spieler(feld[1], this, 1);
         aktuellerSpieler = 0;
         aktuellesFeld = 1;
-        spielzustand = 1;
+        spielzustand = "Baumodus";
+        baurichtung = "vertikal";
         view = new View(this);
     }
-    
+
     public void click(int x, int y){
-      if(aktuellesFeld == aktuellerSpieler) {     
-        if (spielzustand == 1){
+        if(aktuellesFeld == aktuellerSpieler) {     
+            if (spielzustand == "Baumodus"){
                 bauclick(x, y, aktuellesFeld);
             }
             else{
                 schussclick(x, y, aktuellesFeld);
             }
-      }
-    }
-    
-    public void bauclick(int x, int y, int spielerFeld){
-        if(spieler[aktuellerSpieler].schiffeAufstellen(x, y, baurichtung)==false){
-        
         }
     }
-    
+
+    public void bauclick(int x, int y, int spielerFeld){
+        if(spieler[aktuellerSpieler].schiffeAufstellen(x, y, baurichtung)==false){
+            spieler[aktuellerSpieler].schiffeAufstellen(x, y, baurichtung);
+        }
+        else{
+            view.fehlerAnzeigen("Invalide Position!");
+        }
+    }
+
     public void schussclick(int x, int y, int spielerFeld){
         int schussergebnis = spieler[andererSpieler].gibFeld().trefferEigenesFeld(x, y);
         spieler[aktuellerSpieler].gibFeld().setGegnerFeldPosition(x,y, schussergebnis);
-        
-        
-        }
-    
+
+    }
     
     public void baurichtungAendern(){
         if (baurichtung == "vertikal"){
@@ -53,8 +55,9 @@ public class Spiel{
             baurichtung = "vertikal";
         }
     }
+
     public void beendeZug(){
-    
+
         if(aktuellerSpieler == 0){
             aktuellerSpieler = 1;
             andererSpieler = 0;
@@ -64,11 +67,23 @@ public class Spiel{
             aktuellerSpieler =0;
             andererSpieler =1;
         }
-        
+
     }
+
     public void setAktuellesFeld(int aktuellesFeldNeu){
-    
+
         // aktuellesFeld =aktuellesFeldNeu
     }
+
+    public int getaktuellerSpieler(){
+        return aktuellerSpieler;
+    }
     
+    public String spielzustandGeben(){
+        return spielzustand;
+    }
+    
+    public String baurichtungGeben(){
+        return baurichtung;
+    }
 }
