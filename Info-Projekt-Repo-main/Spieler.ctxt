@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Spieler
+comment1.params=spielerFeld\ spiel\ spielernr
+comment1.target=Spieler(Feld,\ Spiel,\ int)
+comment2.params=
+comment2.target=Feld\ gibFeld()
+comment3.params=no
+comment3.target=Schiff\ gibSchiff(int)
+comment4.params=x\ y\ Ausrichtung
+comment4.target=boolean\ schiffeAufstellen(int,\ int,\ java.lang.String)
+comment5.params=
+comment5.target=java.lang.String\ naechstesSchiffGeben()
+comment6.params=noSchiff
+comment6.target=boolean\ baueSchiff(int)
+numComments=7

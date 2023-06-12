@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Datenbankverbindung
+comment1.params=
+comment1.target=Datenbankverbindung()
+comment2.params=serverURL
+comment2.target=void\ verbindungAufbauen(java.lang.String)
+comment3.params=
+comment3.target=void\ schuelerAusgeben()
+comment4.params=
+comment4.target=void\ verbindungBeenden()
+comment5.params=
+comment5.target=void\ tabelleAufsetzen()
+numComments=6
