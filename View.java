@@ -12,7 +12,7 @@ public class View extends JFrame implements ActionListener, MouseListener, Mouse
     //Kommunikation mit Model
     private Spiel spiel;
     
-    
+    private int zugeordneterSpieler; //der Spieler dem diese view gehört, 1 oder 2
     //Symbole für den Zustand einer Zelle
     String wasser = "-";
     String schiff = "s";
@@ -316,8 +316,8 @@ public class View extends JFrame implements ActionListener, MouseListener, Mouse
     }
 
     // Die Sicht zwischen Spieler1 und Spieler2 wechseln
-    public void sichtWechseln(){
-        //Noch zu machen
+    public void unsichtbarMachen(){
+        
     }
     
     public void mouseClicked(MouseEvent e) {
