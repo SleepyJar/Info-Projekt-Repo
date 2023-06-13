@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Schiff
+comment1.params=laenge\ x\ y\ ausrichtung
+comment1.target=Schiff(int,\ int,\ int,\ java.lang.String)
+comment2.params=x\ y
+comment2.target=void\ treffen(int,\ int)
+comment3.params=
+comment3.target=void\ schiffSinken()
+comment4.params=
+comment4.target=boolean\ lebt()
+comment5.params=
+comment5.target=int\ laengeGeben()
+comment6.params=
+comment6.target=java.lang.String\ ausrichtungGeben()
+comment7.params=
+comment7.target=int\ xGeben()
+comment8.params=
+comment8.target=int\ yGeben()
+numComments=9
